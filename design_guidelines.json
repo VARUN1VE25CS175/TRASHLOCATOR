@@ -1,0 +1,155 @@
+{
+  "identity": {
+    "persona": "E1",
+    "role": "Creative Designer (Anti-AI)",
+    "principles": [
+      "Fusion over Imitation",
+      "Emotion First",
+      "Content is King",
+      "Zoom In",
+      "Negative Space",
+      "Contrast"
+    ]
+  },
+  "design_system": {
+    "theme": "light",
+    "colors": {
+      "primary": {
+        "name": "Eco Sage",
+        "hex": "#4A7C59",
+        "tailwind": "bg-[#4A7C59] text-white hover:bg-[#3A6346]"
+      },
+      "secondary": {
+        "name": "Clean Stone",
+        "hex": "#F3F4F6",
+        "tailwind": "bg-gray-100 text-gray-900"
+      },
+      "accent": {
+        "name": "Alert Terracotta",
+        "hex": "#E07A5F",
+        "tailwind": "text-[#E07A5F]"
+      },
+      "background": {
+        "default": "#FFFFFF",
+        "subtle": "#F9FAFB"
+      },
+      "text": {
+        "primary": "#111827",
+        "secondary": "#4B5563",
+        "muted": "#9CA3AF"
+      }
+    },
+    "typography": {
+      "headings": {
+        "font_family": "Outfit, sans-serif",
+        "weights": ["600", "700"],
+        "styles": "tracking-tight leading-tight"
+      },
+      "body": {
+        "font_family": "Inter, sans-serif",
+        "weights": ["400", "500"],
+        "styles": "leading-relaxed tracking-normal"
+      }
+    },
+    "spacing": {
+      "container_padding": "p-6 md:p-8 lg:p-12",
+      "section_gap": "gap-8 md:gap-12",
+      "element_gap": "gap-4"
+    },
+    "radius": {
+      "default": "rounded-xl",
+      "button": "rounded-full",
+      "card": "rounded-2xl"
+    },
+    "shadows": {
+      "card": "shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)] transition-shadow duration-300",
+      "floating": "shadow-[0_8px_30px_rgb(0,0,0,0.12)]"
+    }
+  },
+  "layout_strategies": {
+    "public_map_view": {
+      "structure": "Full-screen map background with floating UI islands.",
+      "components": [
+        {
+          "name": "Search Bar",
+          "position": "Top-left or Top-center (floating)",
+          "style": "Glassmorphism or Solid White pill shape, high shadow"
+        },
+        {
+          "name": "Nearest Dustbin Card",
+          "position": "Bottom-center (mobile) or Bottom-left (desktop)",
+          "style": "Swipeable drawer on mobile, floating card on desktop"
+        },
+        {
+          "name": "Admin Login Button",
+          "position": "Top-right",
+          "style": "Subtle ghost button or icon only"
+        }
+      ]
+    },
+    "admin_dashboard": {
+      "structure": "Sidebar navigation (collapsible on mobile) + Main Content Area.",
+      "grid": "Bento Grid Mode B (High Density)",
+      "style": "Clean, white cards on soft gray background. No heavy gradients."
+    }
+  },
+  "components": {
+    "buttons": {
+      "primary": "bg-[#4A7C59] hover:bg-[#3A6346] text-white rounded-full px-6 py-2 font-medium shadow-lg hover:shadow-xl transition-all active:scale-95",
+      "secondary": "bg-white text-gray-900 border border-gray-200 hover:bg-gray-50 rounded-full px-6 py-2 font-medium transition-all",
+      "ghost": "text-gray-600 hover:text-[#4A7C59] hover:bg-[#4A7C59]/10 rounded-lg px-4 py-2 transition-all"
+    },
+    "cards": {
+      "default": "bg-white rounded-2xl border border-gray-100 shadow-sm p-6",
+      "interactive": "bg-white rounded-2xl border border-gray-100 shadow-sm hover:border-[#4A7C59]/30 hover:shadow-md transition-all cursor-pointer"
+    },
+    "inputs": {
+      "default": "bg-gray-50 border-transparent focus:bg-white focus:border-[#4A7C59] focus:ring-2 focus:ring-[#4A7C59]/20 rounded-xl px-4 py-3 transition-all"
+    },
+    "map_markers": {
+      "user": "Blue pulsing dot (standard user location)",
+      "dustbin": "Custom SVG icon (Green bin) with drop shadow"
+    }
+  },
+  "assets": {
+    "images": [
+      {
+        "category": "hero_background",
+        "url": "https://images.unsplash.com/photo-1675335808065-82852cc9744d?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxOTF8MHwxfHNlYXJjaHwzfHxjbGVhbiUyMGNpdHklMjBwYXJrJTIwd2l0aCUyMHJlY3ljbGluZyUyMGJpbnxlbnwwfHx8fDE3Njg0MDc1OTR8MA&ixlib=rb-4.1.0&q=85",
+        "description": "Green trash can in park - Use for Login Page background or About section"
+      },
+      {
+        "category": "texture_subtle",
+        "url": "https://images.unsplash.com/photo-1761331432581-1c75864d28bf?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODB8MHwxfHNlYXJjaHwxfHxtaW5pbWFsaXN0JTIwbmF0dXJlJTIwdGV4dHVyZSUyMGxpZ2h0JTIwYmFja2dyb3VuZHxlbnwwfHx8fDE3Njg0MDc1OTV8MA&ixlib=rb-4.1.0&q=85",
+        "description": "Abstract water ripple - Use for subtle card backgrounds or decorative elements"
+      }
+    ],
+    "icons": "Use Lucide React (default) or Phosphor Icons for a softer look."
+  },
+  "tech_stack": {
+    "frontend": "React",
+    "styling": "Tailwind CSS",
+    "ui_library": "Shadcn/UI (Radix Primitives)",
+    "map_library": "React Leaflet (OpenStreetMap)",
+    "state_management": "React Context or Zustand (if needed)",
+    "icons": "lucide-react"
+  },
+  "universal_guidelines": [
+    "Do not use generic centered layouts.",
+    "Create depth through layered design elements with z-index hierarchy.",
+    "Use glass-morphism effects with backdrop filters (12-24px blur) for floating map controls.",
+    "Every interaction needs micro-animations.",
+    "Use 2-3x more spacing than feels comfortable.",
+    "All interactive elements MUST include data-testid attribute.",
+    "Mobile-first responsive design is mandatory.",
+    "Ensure high contrast for accessibility (WCAG AA)."
+  ],
+  "instructions_to_main_agent": {
+    "step_1": "Install necessary dependencies: leaflet, react-leaflet, lucide-react, clsx, tailwind-merge.",
+    "step_2": "Setup Tailwind theme colors in tailwind.config.js based on the design system.",
+    "step_3": "Create the Map component using React Leaflet. Ensure it takes full height.",
+    "step_4": "Build the floating UI components (Search, Nearest Bin) using the glassmorphism style.",
+    "step_5": "Implement the Admin Dashboard with a clean sidebar layout.",
+    "step_6": "Integrate the 'Green trash can' image as a background for the Admin Login page."
+  }
+}
