@@ -112,6 +112,16 @@ function MapView() {
     requestLocation();
   }, []);
 
+  // Refresh dustbins when window regains focus (e.g., returning from admin dashboard)
+  useEffect(() => {
+    const handleFocus = () => {
+      fetchDustbins();
+    };
+    
+    window.addEventListener('focus', handleFocus);
+    return () => window.removeEventListener('focus', handleFocus);
+  }, []);
+
   return (
     <div className="relative h-screen w-screen" data-testid="map-view">
       {/* Map Container */}
