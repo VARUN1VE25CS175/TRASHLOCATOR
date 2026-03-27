@@ -248,6 +248,14 @@ function MapView() {
                     {distance} km away
                   </span>
                 </div>
+                <button
+                  onClick={() => openDirections(nearestDustbin.latitude, nearestDustbin.longitude, nearestDustbin.name)}
+                  className="mt-4 w-full bg-[#4A7C59] hover:bg-[#3A6346] text-white rounded-full px-4 py-2 font-medium shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
+                  data-testid="get-directions-button"
+                >
+                  <ExternalLink size={18} />
+                  Get Directions
+                </button>
               </div>
             </div>
           </div>
