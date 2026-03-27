@@ -171,6 +171,7 @@ function AdminDashboard({ onLogout }) {
             latitude: position.coords.latitude.toFixed(6),
             longitude: position.coords.longitude.toFixed(6),
           }));
+          setPickedLocation([position.coords.latitude, position.coords.longitude]);
           toast.success('Location updated');
         },
         (error) => {
@@ -180,6 +181,28 @@ function AdminDashboard({ onLogout }) {
       );
     }
   };
+
+  // Toggle map picker
+  const handleToggleMapPicker = () => {
+    setShowMapPicker(!showMapPicker);
+    if (!showMapPicker && formData.latitude && formData.longitude) {
+      setPickedLocation([parseFloat(formData.latitude), parseFloat(formData.longitude)]);
+    } else if (!showMapPicker) {
+      // Default to Delhi if no location set
+      setPickedLocation([28.6139, 77.2090]);
+    }
+  };
+
+  // Update form when location is picked on map
+  useEffect(() => {
+    if (pickedLocation && showMapPicker) {
+      setFormData(prev => ({
+        ...prev,
+        latitude: pickedLocation[0].toFixed(6),
+        longitude: pickedLocation[1].toFixed(6),
+      }));
+    }
+  }, [pickedLocation, showMapPicker]);
 
   return (
     <div className="min-h-screen bg-gray-50" data-testid="admin-dashboard">
