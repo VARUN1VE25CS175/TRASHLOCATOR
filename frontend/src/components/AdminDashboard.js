@@ -45,6 +45,8 @@ function AdminDashboard({ onLogout }) {
     longitude: '',
   });
   const [loading, setLoading] = useState(false);
+  const [showMapPicker, setShowMapPicker] = useState(false);
+  const [pickedLocation, setPickedLocation] = useState(null);
 
   const token = localStorage.getItem('adminToken');
 
