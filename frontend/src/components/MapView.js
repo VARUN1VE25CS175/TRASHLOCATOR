@@ -195,22 +195,9 @@ function MapView() {
         })}
       </MapContainer>
 
-      {/* Floating UI - Admin Login Button */}
-      <div className="absolute top-4 right-4 z-[1000]">
-        <button
-          onClick={() => navigate('/admin/login')}
-          className="glass rounded-full px-4 py-2 shadow-lg hover:shadow-xl flex items-center gap-2 text-gray-700 hover:text-[#4A7C59] font-medium"
-          data-testid="admin-login-button"
-        >
-          <LogIn size={18} />
-          <span className="hidden sm:inline">Admin</span>
-        </button>
-      </div>
-
       {/* Floating UI - Get Location Button */}
       {!userLocation && (
-        <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-[1000]">
-          <button
+        <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-[1000]\">\n          <button
             onClick={requestLocation}
             disabled={loading}
             className="glass rounded-full px-6 py-3 shadow-lg hover:shadow-xl flex items-center gap-2 text-white bg-[#4A7C59] hover:bg-[#3A6346] font-medium disabled:opacity-50"
