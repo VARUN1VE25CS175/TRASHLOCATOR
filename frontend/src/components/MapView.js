@@ -166,6 +166,9 @@ function MapView() {
               position={[dustbin.latitude, dustbin.longitude]}
               icon={createCustomIcon('#4A7C59', isNearest)}
               data-testid={isNearest ? "nearest-dustbin-marker" : "dustbin-marker"}
+              eventHandlers={{
+                click: () => openDirections(dustbin.latitude, dustbin.longitude, dustbin.name)
+              }}
             >
               <Popup>
                 <div className="text-sm">
@@ -178,6 +181,13 @@ function MapView() {
                       Nearest to you ({distance} km)
                     </p>
                   )}
+                  <button
+                    onClick={() => openDirections(dustbin.latitude, dustbin.longitude, dustbin.name)}
+                    className="mt-2 w-full bg-[#4A7C59] hover:bg-[#3A6346] text-white text-xs py-1 px-2 rounded-lg flex items-center justify-center gap-1"
+                  >
+                    <ExternalLink size={12} />
+                    Get Directions
+                  </button>
                 </div>
               </Popup>
             </Marker>
