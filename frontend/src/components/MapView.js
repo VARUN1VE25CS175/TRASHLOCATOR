@@ -122,6 +122,12 @@ function MapView() {
     return () => window.removeEventListener('focus', handleFocus);
   }, []);
 
+  // Open Google Maps directions
+  const openDirections = (latitude, longitude, name) => {
+    const url = `https://www.google.com/maps/dir/?api=1&destination=${latitude},${longitude}&destination_name=${encodeURIComponent(name)}`;
+    window.open(url, '_blank');
+  };
+
   return (
     <div className="relative h-screen w-screen" data-testid="map-view">
       {/* Map Container */}
