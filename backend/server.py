@@ -78,9 +78,9 @@ def calculate_distance(lat1: float, lon1: float, lat2: float, lon2: float) -> fl
     return round(distance, 2)
 
 
-# Simple admin authentication (password: admin123)
-ADMIN_PASSWORD = "admin123"
-ADMIN_TOKEN = "admin_token_secure_12345"
+# Simple admin authentication (password and token from environment)
+ADMIN_PASSWORD = os.environ.get('ADMIN_PASSWORD', 'admin123')
+ADMIN_TOKEN = os.environ.get('ADMIN_TOKEN', 'admin_token_secure_12345')
 
 # Admin routes
 @api_router.post("/admin/login", response_model=AdminLoginResponse)
