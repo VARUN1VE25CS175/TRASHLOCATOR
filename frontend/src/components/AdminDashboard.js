@@ -322,117 +322,173 @@ function AdminDashboard({ onLogout }) {
       {/* Modal */}
       {showModal && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4" data-testid="dustbin-modal">
-          <div className="bg-white rounded-2xl shadow-xl max-w-md w-full p-6">
-            {/* Modal Header */}
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-bold text-gray-900">
-                {editingDustbin ? 'Edit Dustbin' : 'Add New Dustbin'}
-              </h2>
-              <button
-                onClick={() => setShowModal(false)}
-                className="text-gray-400 hover:text-gray-600 transition-colors"
-                data-testid="close-modal-button"
-              >
-                <X size={24} />
-              </button>
+          <div className="bg-white rounded-2xl shadow-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="sticky top-0 bg-white border-b border-gray-200 p-6 z-10">
+              {/* Modal Header */}
+              <div className="flex items-center justify-between">
+                <h2 className="text-2xl font-bold text-gray-900">
+                  {editingDustbin ? 'Edit Dustbin' : 'Add New Dustbin'}
+                </h2>
+                <button
+                  onClick={() => {
+                    setShowModal(false);
+                    setShowMapPicker(false);
+                    setPickedLocation(null);
+                  }}
+                  className="text-gray-400 hover:text-gray-600 transition-colors"
+                  data-testid="close-modal-button"
+                >
+                  <X size={24} />
+                </button>
+              </div>
             </div>
 
-            {/* Form */}
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Name *
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  required
-                  placeholder="e.g., Park Dustbin"
-                  className="w-full bg-gray-50 border-transparent focus:bg-white focus:border-[#4A7C59] focus:ring-2 focus:ring-[#4A7C59]/20 rounded-xl px-4 py-3 transition-all outline-none"
-                  data-testid="dustbin-name-input"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Description
-                </label>
-                <textarea
-                  name="description"
-                  value={formData.description}
-                  onChange={handleInputChange}
-                  placeholder="e.g., Near the main entrance"
-                  rows={3}
-                  className="w-full bg-gray-50 border-transparent focus:bg-white focus:border-[#4A7C59] focus:ring-2 focus:ring-[#4A7C59]/20 rounded-xl px-4 py-3 transition-all outline-none resize-none"
-                  data-testid="dustbin-description-input"
-                />
-              </div>
-
-              <div className="grid grid-cols-2 gap-4">
+            <div className="p-6">
+              {/* Form */}
+              <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Latitude *
+                    Name *
                   </label>
                   <input
-                    type="number"
-                    name="latitude"
-                    value={formData.latitude}
+                    type="text"
+                    name="name"
+                    value={formData.name}
                     onChange={handleInputChange}
                     required
-                    step="any"
-                    placeholder="28.6139"
+                    placeholder="e.g., Park Dustbin"
                     className="w-full bg-gray-50 border-transparent focus:bg-white focus:border-[#4A7C59] focus:ring-2 focus:ring-[#4A7C59]/20 rounded-xl px-4 py-3 transition-all outline-none"
-                    data-testid="dustbin-latitude-input"
+                    data-testid="dustbin-name-input"
                   />
                 </div>
+
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Longitude *
+                    Description
                   </label>
-                  <input
-                    type="number"
-                    name="longitude"
-                    value={formData.longitude}
+                  <textarea
+                    name="description"
+                    value={formData.description}
                     onChange={handleInputChange}
-                    required
-                    step="any"
-                    placeholder="77.2090"
-                    className="w-full bg-gray-50 border-transparent focus:bg-white focus:border-[#4A7C59] focus:ring-2 focus:ring-[#4A7C59]/20 rounded-xl px-4 py-3 transition-all outline-none"
-                    data-testid="dustbin-longitude-input"
+                    placeholder="e.g., Near the main entrance"
+                    rows={3}
+                    className="w-full bg-gray-50 border-transparent focus:bg-white focus:border-[#4A7C59] focus:ring-2 focus:ring-[#4A7C59]/20 rounded-xl px-4 py-3 transition-all outline-none resize-none"
+                    data-testid="dustbin-description-input"
                   />
                 </div>
-              </div>
 
-              <button
-                type="button"
-                onClick={handleUseCurrentLocation}
-                className="w-full text-[#4A7C59] hover:bg-[#4A7C59]/10 rounded-lg px-4 py-2 font-medium transition-all text-sm"
-                data-testid="use-current-location-button"
-              >
-                Use Current Location
-              </button>
+                {/* Location Input Methods */}
+                <div className="space-y-3">
+                  <label className="block text-sm font-medium text-gray-700">
+                    Location *
+                  </label>
+                  
+                  {/* Button Row */}
+                  <div className="flex gap-2">
+                    <button
+                      type="button"
+                      onClick={handleToggleMapPicker}
+                      className={`flex-1 ${showMapPicker ? 'bg-[#4A7C59] text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'} rounded-lg px-4 py-2 font-medium transition-all text-sm flex items-center justify-center gap-2`}
+                      data-testid="toggle-map-picker-button"
+                    >
+                      <MapIcon size={16} />
+                      {showMapPicker ? 'Hide Map' : 'Pin on Map'}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={handleUseCurrentLocation}
+                      className="flex-1 text-[#4A7C59] hover:bg-[#4A7C59]/10 rounded-lg px-4 py-2 font-medium transition-all text-sm flex items-center justify-center gap-2"
+                      data-testid="use-current-location-button"
+                    >
+                      <MapPin size={16} />
+                      My Location
+                    </button>
+                  </div>
 
-              <div className="flex gap-3 pt-2">
-                <button
-                  type="button"
-                  onClick={() => setShowModal(false)}
-                  className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-full px-6 py-3 font-medium transition-all"
-                  data-testid="cancel-button"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="flex-1 bg-[#4A7C59] hover:bg-[#3A6346] text-white rounded-full px-6 py-3 font-medium shadow-lg hover:shadow-xl transition-all disabled:opacity-50"
-                  data-testid="save-dustbin-button"
-                >
-                  {loading ? 'Saving...' : editingDustbin ? 'Update' : 'Add'}
-                </button>
-              </div>
-            </form>
+                  {/* Map Picker */}
+                  {showMapPicker && (
+                    <div className="border border-gray-200 rounded-xl overflow-hidden" data-testid="map-picker-container">
+                      <div className="bg-[#4A7C59] text-white px-4 py-2 text-sm">
+                        Click on the map to pin a location
+                      </div>
+                      <div style={{ height: '300px', width: '100%' }}>
+                        <MapContainer
+                          center={pickedLocation || [28.6139, 77.2090]}
+                          zoom={13}
+                          style={{ height: '100%', width: '100%' }}
+                          zoomControl={true}
+                        >
+                          <TileLayer
+                            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                          />
+                          <LocationPicker position={pickedLocation} setPosition={setPickedLocation} />
+                        </MapContainer>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Coordinate Inputs */}
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-medium text-gray-600 mb-1">
+                        Latitude *
+                      </label>
+                      <input
+                        type="number"
+                        name="latitude"
+                        value={formData.latitude}
+                        onChange={handleInputChange}
+                        required
+                        step="any"
+                        placeholder="28.6139"
+                        className="w-full bg-gray-50 border-transparent focus:bg-white focus:border-[#4A7C59] focus:ring-2 focus:ring-[#4A7C59]/20 rounded-xl px-4 py-3 transition-all outline-none text-sm"
+                        data-testid="dustbin-latitude-input"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-medium text-gray-600 mb-1">
+                        Longitude *
+                      </label>
+                      <input
+                        type="number"
+                        name="longitude"
+                        value={formData.longitude}
+                        onChange={handleInputChange}
+                        required
+                        step="any"
+                        placeholder="77.2090"
+                        className="w-full bg-gray-50 border-transparent focus:bg-white focus:border-[#4A7C59] focus:ring-2 focus:ring-[#4A7C59]/20 rounded-xl px-4 py-3 transition-all outline-none text-sm"
+                        data-testid="dustbin-longitude-input"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex gap-3 pt-4">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setShowModal(false);
+                      setShowMapPicker(false);
+                      setPickedLocation(null);
+                    }}
+                    className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-full px-6 py-3 font-medium transition-all"
+                    data-testid="cancel-button"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="flex-1 bg-[#4A7C59] hover:bg-[#3A6346] text-white rounded-full px-6 py-3 font-medium shadow-lg hover:shadow-xl transition-all disabled:opacity-50"
+                    data-testid="save-dustbin-button"
+                  >
+                    {loading ? 'Saving...' : editingDustbin ? 'Update' : 'Add'}
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       )}
