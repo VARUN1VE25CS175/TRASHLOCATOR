@@ -76,6 +76,8 @@ function AdminDashboard({ onLogout }) {
     setEditingDustbin(null);
     setFormData({ name: '', description: '', latitude: '', longitude: '' });
     setShowModal(true);
+    setShowMapPicker(false);
+    setPickedLocation(null);
   };
 
   // Open modal for editing dustbin
@@ -88,6 +90,8 @@ function AdminDashboard({ onLogout }) {
       longitude: dustbin.longitude.toString(),
     });
     setShowModal(true);
+    setShowMapPicker(false);
+    setPickedLocation([dustbin.latitude, dustbin.longitude]);
   };
 
   // Handle form submit (add or update)
