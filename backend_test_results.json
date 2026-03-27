@@ -3,80 +3,80 @@
     "total_tests": 12,
     "passed_tests": 12,
     "success_rate": 1.0,
-    "timestamp": "2026-01-14T16:25:51.832971"
+    "timestamp": "2026-03-27T06:23:57.009544"
   },
   "test_results": [
     {
       "test": "Root API Endpoint",
       "success": true,
       "details": "Status: 200, Response: {'message': 'Dustbin Locator API'}",
-      "timestamp": "2026-01-14T16:25:51.362963"
+      "timestamp": "2026-03-27T06:23:55.685690"
     },
     {
       "test": "Admin Login (Valid)",
       "success": true,
       "details": "Token received: admin_token_secure_1...",
-      "timestamp": "2026-01-14T16:25:51.400219"
+      "timestamp": "2026-03-27T06:23:55.829485"
     },
     {
       "test": "Admin Login (Invalid)",
       "success": true,
       "details": "Response: {'success': False, 'token': None, 'message': 'Invalid password'}",
-      "timestamp": "2026-01-14T16:25:51.437409"
+      "timestamp": "2026-03-27T06:23:55.960420"
     },
     {
       "test": "Get Dustbins (Empty)",
       "success": true,
-      "details": "Status: 200, Count: 0",
-      "timestamp": "2026-01-14T16:25:51.476866"
+      "details": "Status: 200, Count: 4",
+      "timestamp": "2026-03-27T06:23:56.059908"
     },
     {
       "test": "Create Dustbin (Unauthorized)",
       "success": true,
       "details": "Status: 401",
-      "timestamp": "2026-01-14T16:25:51.552417"
+      "timestamp": "2026-03-27T06:23:56.158223"
     },
     {
       "test": "Create Dustbin",
       "success": true,
-      "details": "Created dustbin ID: 5e3bea91-e577-4a26-beef-e4601b2894ae",
-      "timestamp": "2026-01-14T16:25:51.610096"
+      "details": "Created dustbin ID: 943548f3-0b55-4293-a6d8-3b459f201024",
+      "timestamp": "2026-03-27T06:23:56.270037"
     },
     {
       "test": "Get Dustbins (With Data)",
       "success": true,
-      "details": "Status: 200, Count: 1",
-      "timestamp": "2026-01-14T16:25:51.654162"
+      "details": "Status: 200, Count: 5",
+      "timestamp": "2026-03-27T06:23:56.407150"
     },
     {
       "test": "Nearest Dustbin",
       "success": true,
       "details": "Found dustbin: True, Distance: 0.0 km",
-      "timestamp": "2026-01-14T16:25:51.693263"
+      "timestamp": "2026-03-27T06:23:56.509523"
     },
     {
       "test": "Update Dustbin (Unauthorized)",
       "success": true,
       "details": "Status: 401",
-      "timestamp": "2026-01-14T16:25:51.725284"
+      "timestamp": "2026-03-27T06:23:56.636770"
     },
     {
       "test": "Update Dustbin",
       "success": true,
       "details": "Status: 200",
-      "timestamp": "2026-01-14T16:25:51.764735"
+      "timestamp": "2026-03-27T06:23:56.741420"
     },
     {
       "test": "Delete Dustbin (Unauthorized)",
       "success": true,
       "details": "Status: 401",
-      "timestamp": "2026-01-14T16:25:51.800398"
+      "timestamp": "2026-03-27T06:23:56.910413"
     },
     {
       "test": "Delete Dustbin",
       "success": true,
       "details": "Status: 200",
-      "timestamp": "2026-01-14T16:25:51.832138"
+      "timestamp": "2026-03-27T06:23:57.008680"
     }
   ]
 }
