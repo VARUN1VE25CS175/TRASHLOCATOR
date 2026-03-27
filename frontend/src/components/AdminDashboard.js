@@ -10,6 +10,29 @@ import 'leaflet/dist/leaflet.css';
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
+// Pin icon for map
+const pinIcon = L.divIcon({
+  className: 'custom-icon',
+  html: `<div style="background-color: #E07A5F; border: 3px solid white; border-radius: 50%; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(224, 122, 95, 0.4);">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+    </svg>
+  </div>`,
+  iconSize: [36, 36],
+  iconAnchor: [18, 36],
+});
+
+// Component to handle map clicks
+function LocationPicker({ position, setPosition }) {
+  useMapEvents({
+    click(e) {
+      setPosition([e.latlng.lat, e.latlng.lng]);
+    },
+  });
+
+  return position ? <Marker position={position} icon={pinIcon} /> : null;
+}
+
 function AdminDashboard({ onLogout }) {
   const navigate = useNavigate();
   const [dustbins, setDustbins] = useState([]);
