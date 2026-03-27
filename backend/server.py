@@ -100,7 +100,11 @@ async def admin_login(request: AdminLoginRequest):
 # Dustbin CRUD routes
 @api_router.get("/dustbins", response_model=List[Dustbin])
 async def get_all_dustbins():
-    dustbins = await db.dustbins.find({}, {"_id": 0}).to_list(1000)
+    # Fetch only required fields with projection
+    dustbins = await db.dustbins.find(
+        {}, 
+        {"_id": 0, "id": 1, "name": 1, "description": 1, "latitude": 1, "longitude": 1, "added_by": 1, "created_at": 1}
+    ).to_list(1000)
     
     # Convert ISO string timestamps back to datetime objects
     for dustbin in dustbins:
