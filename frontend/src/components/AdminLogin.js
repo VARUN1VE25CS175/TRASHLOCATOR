@@ -48,16 +48,6 @@ function AdminLogin({ onLogin }) {
         <div className="absolute inset-0 bg-white/70 backdrop-blur-sm"></div>
       </div>
 
-      {/* Back Button */}
-      <button
-        onClick={() => navigate('/')}
-        className="absolute top-6 left-6 z-10 flex items-center gap-2 text-gray-600 hover:text-[#4A7C59] font-medium transition-colors"
-        data-testid="back-to-map-button"
-      >
-        <ArrowLeft size={20} />
-        <span>Back to Map</span>
-      </button>
-
       {/* Login Card */}
       <div className="relative z-10 w-full max-w-md px-6">
         <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
@@ -66,8 +56,9 @@ function AdminLogin({ onLogin }) {
             <div className="inline-flex items-center justify-center w-16 h-16 bg-[#4A7C59] rounded-2xl mb-4">
               <Lock size={32} className="text-white" />
             </div>
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Admin Login</h1>
-            <p className="text-gray-600 text-sm">Enter your password to manage dustbins</p>
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">Admin Portal</h1>
+            <p className="text-gray-600 text-sm">Dustbin Management System</p>
+            <p className="text-xs text-gray-500 mt-2">Secure access for administrators only</p>
           </div>
 
           {/* Login Form */}
@@ -94,7 +85,7 @@ function AdminLogin({ onLogin }) {
               className="w-full bg-[#4A7C59] hover:bg-[#3A6346] text-white rounded-full px-6 py-3 font-medium shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
               data-testid="admin-login-submit-button"
             >
-              {loading ? 'Logging in...' : 'Login'}
+              {loading ? 'Logging in...' : 'Access Admin Panel'}
             </button>
           </form>
 
@@ -104,6 +95,13 @@ function AdminLogin({ onLogin }) {
               Default password: <span className="font-mono font-semibold text-gray-700">admin123</span>
             </p>
           </div>
+        </div>
+        
+        {/* Info Box */}
+        <div className="mt-4 text-center">
+          <p className="text-xs text-gray-500">
+            Admin portal URL: <span className="font-mono text-gray-700">/admin/login</span>
+          </p>
         </div>
       </div>
     </div>
