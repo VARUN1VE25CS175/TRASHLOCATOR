@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
-import { Lock, ArrowLeft } from 'lucide-react';
+import { Lock } from 'lucide-react';
 import { toast } from 'sonner';
 import { useNavigate } from 'react-router-dom';
 
